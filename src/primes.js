@@ -2,7 +2,7 @@ export function isPrime(n) {
     if (n < 2) {
         return false; 
     }
-    for (let i = 2; i * i <= n; i = i + 1) {
+    for (let i = 2; i * i <= n; i = i + 1) { // equivalent to i <= √n, avoids calling Math.sqrt
     if (n % i === 0) {
         return false;
     }
