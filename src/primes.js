@@ -1,5 +1,5 @@
 export function isPrime(n) {
-    if (n < 2){
+    if (n < 2) {
         return false; 
     }
     for (let i = 2; i * i <= n; i = i + 1) {
@@ -8,5 +8,18 @@ export function isPrime(n) {
     }
 }
 return true;
+}
+
+
+export function generatePrimes(count) {
+
+const primes = [];
+
+    for (let i = 2; primes.length < count; i = i + 1) {
+        if ( isPrime(i) ) {
+            primes.push(i);
+        }
+    }
+    return primes;
 }
 
