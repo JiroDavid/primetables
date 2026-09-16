@@ -1,0 +1,14 @@
+{
+  "name": "prime-tables",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Multiplication table generator for the first N primes"
+}
