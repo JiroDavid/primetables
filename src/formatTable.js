@@ -23,6 +23,8 @@ export function formatTable(primes, grid) {
     }
     const headerRow = headerCells.join(' ');
 
+    const separatorRow = '-'.repeat(headerRow.length);
+
     const dataRows = [];
     for (let i = 0; i < grid.length; i = i + 1) {
         const rowCells = [String(primes[i]).padStart(maxWidth)];
@@ -32,5 +34,5 @@ export function formatTable(primes, grid) {
         dataRows.push(rowCells.join(' '));
     }
 
-    return [headerRow, ...dataRows].join('\n');
+    return [headerRow, separatorRow, ...dataRows].join('\n');
 }
