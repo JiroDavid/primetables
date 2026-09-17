@@ -53,3 +53,19 @@ test('generatePrimes(0) returns empty array', () => {
 test('generatePrimes(1) returns first prime', () => {
     assert.deepStrictEqual(generatePrimes(1), [2]);
 });
+
+test('generatePrimes(-5) throws RangeError', () => {
+    assert.throws(() => generatePrimes(-5), RangeError);
+});
+
+test('generatePrimes(null) throws RangeError', () => {
+    assert.throws(() => generatePrimes(null), RangeError);
+});
+
+test('generatePrimes(2.5) throws RangeError', () => {
+    assert.throws(() => generatePrimes(2.5), RangeError);
+});
+
+test('generatePrimes("5") throws RangeError', () => {
+    assert.throws(() => generatePrimes("5"), RangeError);
+});

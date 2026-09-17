@@ -18,6 +18,10 @@ export function isPrime(n, knownPrimes) {
 }
 
 export function generatePrimes(count) {
+    if (!Number.isInteger(count) || count < 0) {
+        throw new RangeError(`count must be a non-negative integer, got: ${count}`);
+    }
+
     const primes = [];
 
     for (let i = 2; primes.length < count; i = i + 1) {
