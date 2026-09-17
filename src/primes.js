@@ -1,25 +1,29 @@
-export function isPrime(n) {
+// Precondition: knownPrimes must contain every prime up to sqrt(n) (as
+// generatePrimes always ensures when it calls this). If it's missing a
+// prime that should have been checked, isPrime can return a wrong answer.
+export function isPrime(n, knownPrimes) {
     if (n < 2) {
-        return false; 
-    }
-    for (let i = 2; i * i <= n; i = i + 1) { // equivalent to i <= √n, avoids calling Math.sqrt
-    if (n % i === 0) {
         return false;
     }
+    for (let i = 0; i < knownPrimes.length; i = i + 1) {
+        const p = knownPrimes[i];
+        if (p * p > n) {
+            break;
+        }
+        if (n % p === 0) {
+            return false;
+        }
+    }
+    return true;
 }
-return true;
-}
-
 
 export function generatePrimes(count) {
-
-const primes = [];
+    const primes = [];
 
     for (let i = 2; primes.length < count; i = i + 1) {
-        if ( isPrime(i) ) {
+        if (isPrime(i, primes)) {
             primes.push(i);
         }
     }
     return primes;
 }
-

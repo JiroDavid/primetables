@@ -3,35 +3,43 @@ import assert from "node:assert/strict";
 import { isPrime, generatePrimes } from "../src/primes.js";
 
 test('2 is prime', () => {
-    assert.strictEqual(isPrime(2), true);
+    assert.strictEqual(isPrime(2, []), true);
 });
 
 test('1 is not prime', () => {
-    assert.strictEqual(isPrime(1), false);
+    assert.strictEqual(isPrime(1, []), false);
 });
 
 test('7 is prime', () => {
-    assert.strictEqual(isPrime(7), true);
+    assert.strictEqual(isPrime(7, [2]), true);
 });
 
 test('17 is prime', () => {
-    assert.strictEqual(isPrime(17), true);
+    assert.strictEqual(isPrime(17, [2, 3]), true);
 });
 
 test('9 is not prime', () => {
-    assert.strictEqual(isPrime(9), false);
+    assert.strictEqual(isPrime(9, [2, 3]), false);
 });
 
 test('15 is not prime', () => {
-    assert.strictEqual(isPrime(15), false);
+    assert.strictEqual(isPrime(15, [2, 3]), false);
 });
 
 test('0 is not prime', () => {
-    assert.strictEqual(isPrime(0), false);
+    assert.strictEqual(isPrime(0, []), false);
 });
 
 test('-15 is not prime', () => {
-    assert.strictEqual(isPrime(-15), false);
+    assert.strictEqual(isPrime(-15, []), false);
+});
+
+test('isPrime stops checking once p*p exceeds n, ignoring later entries in knownPrimes', () => {
+    // 7's only relevant check is against 2 (3*3 > 7, so it should break
+    // before reaching 3). The array includes 7 itself further along
+    // if the loop didn't break early and checked it, 7 % 7 === 0 would
+    // wrongly report 7 as not prime.
+    assert.strictEqual(isPrime(7, [2, 3, 7]), true);
 });
 
 test('generatePrimes(5) returns first 5 primes', () => {
